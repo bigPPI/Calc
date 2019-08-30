@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace TASK.Views
 {
 	/// <summary>
-	/// Interaction logic for LoggerView.xaml
+	/// Interaction logic for WarnView.xaml
 	/// </summary>
-	public partial class LoggerView : Window
+	public partial class WarnView : Window
 	{
-		public LoggerView()
+		public WarnView()
 		{
 			InitializeComponent();
 		}

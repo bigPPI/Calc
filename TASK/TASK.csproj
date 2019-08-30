@@ -86,13 +86,13 @@
     <Compile Include="Logging\LogHelper.cs" />
     <Compile Include="Models\Calculations.cs" />
     <Compile Include="Models\ICalculations.cs" />
-    <Compile Include="ViewModels\LoggerViewModel.cs" />
+    <Compile Include="ViewModels\WarnViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
-    <Compile Include="Views\LoggerView.xaml.cs">
-      <DependentUpon>LoggerView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WarnView.xaml.cs">
+      <DependentUpon>WarnView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -125,11 +125,11 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Page Include="Views\LoggerView.xaml">
+    <Page Include="Views\ShellView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ShellView.xaml">
+    <Page Include="Views\WarnView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

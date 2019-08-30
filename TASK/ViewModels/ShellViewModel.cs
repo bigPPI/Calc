@@ -9,17 +9,22 @@ using TASK.Models;
 
 namespace TASK.ViewModels
 {
-	public class ShellViewModel : Screen
+	public class ShellViewModel : Conductor<object>.Collection.OneActive
 	{
+		IWindowManager _manager;
 		ICalculations _calculator;
+
 		private static readonly log4net.ILog _log = LogHelper.GetLogger();
 
-		public ShellViewModel(ICalculations calculator)
+		public ShellViewModel(ICalculations calculator, IWindowManager manager)
 		{
 			_calculator = calculator;
+			_manager = manager;
 		}
 
+		#region Properties
 		private string _expression = string.Empty;
+		private string _inputNumber = "0";
 
 		public string Expression
 		{
@@ -31,8 +36,9 @@ namespace TASK.ViewModels
 			}
 		}
 
-		private string _inputNumber = "0";
-
+		/// <summary>
+		/// Property, which contains input/output data, user writes/gets
+		/// </summary>
 		public string InputNumber
 		{
 			get { return _inputNumber; }
@@ -42,11 +48,15 @@ namespace TASK.ViewModels
 				NotifyOfPropertyChange(() => InputNumber);
 			}
 		}
+		#endregion
 
+		#region Technical fields
 		private string _secondNumber = string.Empty;
 		private string _operator = string.Empty;
 		private bool _allowChangeOperators = false;
+		#endregion
 
+		#region Buttons' OnClic handlers
 		public void One()
 		{
 			NumericButton("1");
@@ -119,52 +129,17 @@ namespace TASK.ViewModels
 
 		public void Percent()
 		{
-			InputNumber = _calculator.Calculate(_secondNumber, InputNumber, "%");
+			InputNumber = TryCalculate(_secondNumber, InputNumber, "%");
 		}
 
 		public void Factorial()
 		{
-			InputNumber = _calculator.Calculate(InputNumber, "!");
+			InputNumber = TryCalculate(InputNumber, "!");
 		}
 
-		public void NumericButton(string digit)
+		public void IsEqual()
 		{
-			if(_allowChangeOperators || InputNumber == "0")
-			{
-				_allowChangeOperators = false;
-				InputNumber = string.Empty;
-			}
-			InputNumber += digit;
-		}
-
-		public void ActionButton(string func)
-		{
-			if (string.IsNullOrEmpty(_secondNumber))
-			{
-				_secondNumber = InputNumber;
-				_operator = func;
-			}
-			else
-			{
-				if (_allowChangeOperators)
-				{
-					_operator = func;
-				}
-				else
-				{
-					InputNumber = _calculator.Calculate(_secondNumber, InputNumber, _operator);
-					
-					_secondNumber = InputNumber;
-					_operator = func;
-				}
-			}
-
-			_allowChangeOperators = true;
-		}
-
-		public void Equals()
-		{
-			InputNumber = _calculator.Calculate(_secondNumber, InputNumber, _operator);
+			InputNumber = TryCalculate(_secondNumber, InputNumber, _operator);
 			
 			_secondNumber = string.Empty;
 			_operator = string.Empty;
@@ -198,5 +173,113 @@ namespace TASK.ViewModels
 				InputNumber = InputNumber.Remove(InputNumber.Length - 1);
 			}
 		}
+		#endregion
+
+		#region Connection to calculator
+
+		/// <summary>
+		/// Trying to calculate unary operation
+		/// </summary>
+		/// <param name="a">Operand</param>
+		/// <param name="function">Unary operator</param>
+		/// <returns></returns>
+		private string TryCalculate(string a, string function)
+		{
+			var result = "0";
+
+			try
+			{
+				result = _calculator.Calculate(a, function);
+			}
+			catch (ArgumentException e)
+			{
+				ShowWarning(e.Message);
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		/// Trying to calculate binary operation
+		/// </summary>
+		/// <param name="a">1-st operand</param>
+		/// <param name="b">2-nd operand</param>
+		/// <param name="function">Binary operator</param>
+		/// <returns></returns>
+		private string TryCalculate(string a, string b, string function)
+		{
+			var result = "0";
+
+			try
+			{
+				result = _calculator.Calculate(a, b, function);
+			}
+			catch (ArgumentException e)
+			{
+				ShowWarning(e.Message);
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		/// Shows a warning/error message to a user
+		/// </summary>
+		/// <param name="message">Warning/Error message</param>
+		private void ShowWarning(string message)
+		{
+			var warning = new WarnViewModel(message);
+
+			ActivateItem(warning);
+			_manager.ShowWindow(warning);
+		}
+		#endregion
+
+		#region Handling logic
+
+		/// <summary>
+		/// Handling numeric button's click
+		/// </summary>
+		/// <param name="digit"></param>
+		public void NumericButton(string digit)
+		{
+			if (_allowChangeOperators || InputNumber == "0")
+			{
+				_allowChangeOperators = false;
+				InputNumber = string.Empty;
+			}
+			InputNumber += digit;
+		}
+
+		/// <summary>
+		/// Handling action button's click
+		/// </summary>
+		/// <param name="digit"></param>
+		public void ActionButton(string func)
+		{
+			if (string.IsNullOrEmpty(_secondNumber))
+			{
+				_secondNumber = InputNumber;
+				_operator = func;
+			}
+			else
+			{
+				if (_allowChangeOperators)
+				{
+					_operator = func;
+				}
+				else
+				{
+					InputNumber = TryCalculate(_secondNumber, InputNumber, _operator);
+
+					_secondNumber = InputNumber;
+					_operator = func;
+				}
+			}
+
+			_allowChangeOperators = true;
+		}
+		#endregion
+
 	}
 }

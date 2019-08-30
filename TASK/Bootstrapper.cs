@@ -24,6 +24,9 @@ namespace TASK
 			Initialize();
 		}
 
+		/// <summary>
+		/// Configuring Castle.Windsor DI-container
+		/// </summary>
 		protected override void Configure()
 		{
 			_log.Debug("Configuring Bootsrapper started");
@@ -35,8 +38,9 @@ namespace TASK
 			_container.Register(Component.For<IWindowManager>().ImplementedBy<WindowManager>().LifestyleSingleton());
 			_container.Register(Component.For<IEventAggregator>().ImplementedBy<EventAggregator>().LifestyleSingleton());
 
-			_container.Register(Component.For<ICalculations>().ImplementedBy<Calc>().LifestyleTransient());
+			_container.Register(Component.For<ICalculations>().ImplementedBy<Calculations>().LifestyleTransient());
 
+			//Register all ViewModels
 			GetType().Assembly.GetTypes()
 				.Where(type => type.IsClass)
 				.Where(type => type.Name.EndsWith("ViewModel"))
@@ -66,7 +70,7 @@ namespace TASK
 
 		protected override void OnStartup(object sender, StartupEventArgs e)
 		{
-			DisplayRootViewFor<LoggerViewModel>();
+			DisplayRootViewFor<ShellViewModel>();
 			_log.Debug("ShallViev is shown");
 		}
 

@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TASK.Views"
         mc:Ignorable="d" FontSize="25" FontFamily="Segoe UI" 
-        Title="ShellView" Height="780" Width="395">
+        Title="ShellView" Height="666.61" Width="409.227">
     <Grid>
+        <!-- Rows/Columns defenitions -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -89,7 +90,7 @@
                 Grid.Row="7" Grid.Column="0">,</Button>
         <Button x:Name="Zero"
                 Grid.Row="7" Grid.Column="1" FontWeight="Bold" >0</Button>
-        <Button x:Name="Equals"
+        <Button x:Name="IsEqual"
                 Grid.Row="7" Grid.Column="2">=</Button>
         <Button x:Name="Plus"
                 Grid.Row="7" Grid.Column="3">+</Button>
