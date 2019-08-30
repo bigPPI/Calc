@@ -227,7 +227,7 @@ namespace TASK.ViewModels
 			}
 			catch (ArgumentException e)
 			{
-				_log.Error(e.Message);
+				_log.Error(e.Message, e);
 				ShowWarning(e.Message);
 			}
 
@@ -254,7 +254,7 @@ namespace TASK.ViewModels
 			}
 			catch (ArgumentException e)
 			{
-				_log.Error(e.Message);
+				_log.Error(e.Message, e);
 				ShowWarning(e.Message);
 			}
 

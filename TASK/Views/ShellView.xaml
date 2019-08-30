@@ -3,9 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:local="clr-namespace:TASK.Views"
+        xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d" FontSize="25" FontFamily="Segoe UI" 
         Title="Calculator" Height="664" Width="430">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="KeyDown">
+            <cal:ActionMessage MethodName="KeyPressed">
+                <cal:Parameter Value="$eventArgs"/>
+            </cal:ActionMessage>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <Grid>
         <!-- Rows/Columns defenitions -->
         <Grid.RowDefinitions>
@@ -14,8 +25,10 @@
         </Grid.RowDefinitions>
 
         <!-- ROW 0 -->
-        <Button x:Name="ChangeCalculators" Background="White">
-                ↻ Switch calculator</Button>
+        <TextBlock Margin="10,0,0,0"
+                   FontSize="14"
+            VerticalAlignment="Center">
+            Press "Tab" to switch calculators</TextBlock>
 
         <!-- ROW 1 -->
         <ContentControl x:Name="ActiveItem" Grid.Row="1" />

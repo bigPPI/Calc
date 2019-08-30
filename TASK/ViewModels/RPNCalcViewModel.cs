@@ -127,10 +127,16 @@ namespace TASK.ViewModels
 
 		public void BackSpace()
 		{
-			if (InputString.Length > 1)
+			if (InputString.Length == 1)
+			{
+				InputString = "0";
+			}
+			else
 			{
 				InputString = InputString.Remove(InputString.Length - 1);
 			}
+
+			Expression = string.Empty;
 		}
 
 		public void OpenBracket()
@@ -153,14 +159,14 @@ namespace TASK.ViewModels
 			OrdinaryButtonClicked("^");
 		}
 
-		private void OrdinaryButtonClicked(string digit)
+		public void OrdinaryButtonClicked(string digit)
 		{
 			if (!string.IsNullOrWhiteSpace(Expression))
 			{
 				Expression = string.Empty;
 			}
 
-			if(InputString == "0")
+			if(InputString == "0" && digit != ",")
 			{
 				InputString = string.Empty;
 			}
@@ -194,7 +200,7 @@ namespace TASK.ViewModels
 			}
 			catch (ArgumentException e)
 			{
-				_log.Error(e.Message);
+				_log.Error(e.Message, e);
 				ShowWarning(e.Message);
 			}
 

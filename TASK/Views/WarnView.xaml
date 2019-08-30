@@ -20,10 +20,12 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
+        <!-- ROW 0 -->
         <TextBlock x:Name="Text" Margin="5,5,5,5" 
 				   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" 
 				   VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
 
+        <!-- ROW 1 -->
         <Button x:Name="Ok"  Margin="20,7,20,20" 
                 Grid.Row="1" Grid.Column="1">Ok</Button>
     </Grid>

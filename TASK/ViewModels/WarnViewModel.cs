@@ -25,13 +25,13 @@ namespace TASK.ViewModels
 		public WarnViewModel(string message)
 		{
 			Text = message;
-			_log.Info("WarnView is shown");
+			_log.Debug("WarnView is shown");
 		}
 
 		public void Ok()
 		{
 			this.TryClose();
-			_log.Info("WarnView is closed");
+			_log.Debug("WarnView is closed");
 		}
 	}
 }

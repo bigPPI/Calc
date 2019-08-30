@@ -32,7 +32,7 @@ namespace TASK.Models
 				throw new ArgumentException(e.Message);
 			}
 
-			Math.Round(result, 5);
+			result = Math.Round(result, 5);
 
 			return Convert.ToString(result);
 		}
@@ -64,7 +64,7 @@ namespace TASK.Models
 				throw new ArgumentException(e.Message);
 			}
 
-			Math.Round(result, 5);
+			result = Math.Round(result, 5);
 
 			return Convert.ToString(result);
 		}
