@@ -1,0 +1,98 @@
+﻿<Window x:Class="TASK.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TASK.Views"
+        mc:Ignorable="d" FontSize="25" FontFamily="Segoe UI" 
+        Title="ShellView" Height="780" Width="395">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.6*"/>
+            <RowDefinition Height="1.4*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- ROW 0 -->
+
+
+        <!-- ROW 1 -->
+        <TextBlock x:Name="Expression"
+                   Margin="10,0,0,0" 
+				   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"
+				   FontSize="18"
+				   VerticalAlignment="Center"></TextBlock>
+
+        <!-- ROW 2 -->
+        <TextBlock x:Name="InputNumber"
+                   Margin="0,0,10,0" 
+				   Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4"
+				   FontSize="50" FontWeight="Bold" 
+				   VerticalAlignment="Center" HorizontalAlignment="Right">123</TextBlock>
+
+        <!-- ROW 3 -->
+        <Button x:Name="Clear"
+                Grid.Row="3" Grid.Column="0">C</Button>
+        <Button x:Name="BackSpace"
+                Grid.Row="3" Grid.Column="1">⌫</Button>
+        <Button x:Name="Percent"
+                Grid.Row="3" Grid.Column="2">%</Button>
+        <Button x:Name="Factorial"
+                Grid.Row="3" Grid.Column="3">n!</Button>
+
+        <!-- ROW 4 -->
+        <Button x:Name="Seven"
+                Grid.Row="4" Grid.Column="0" 
+                FontWeight="Bold" >7</Button>
+        <Button x:Name="Eight"
+                Grid.Row="4" Grid.Column="1" 
+                FontWeight="Bold" >8</Button>
+        <Button x:Name="Nine"
+                Grid.Row="4" Grid.Column="2" 
+                FontWeight="Bold" >9</Button>
+        <Button x:Name="Divide"
+                Grid.Row="4" Grid.Column="3">/</Button>
+
+        <!-- ROW 5 -->
+        <Button x:Name="Four"
+                Grid.Row="5" Grid.Column="0" FontWeight="Bold" >4</Button>
+        <Button x:Name="Five"
+                Grid.Row="5" Grid.Column="1" FontWeight="Bold" >5</Button>
+        <Button x:Name="Six"
+                Grid.Row="5" Grid.Column="2" FontWeight="Bold" >6</Button>
+        <Button x:Name="Multiply"
+                Grid.Row="5" Grid.Column="3">x</Button>
+
+        <!-- ROW 6 -->
+        <Button x:Name="One"
+                Grid.Row="6" Grid.Column="0" FontWeight="Bold" >1</Button>
+        <Button x:Name="Two"
+                Grid.Row="6" Grid.Column="1" FontWeight="Bold" >2</Button>
+        <Button x:Name="Three"
+                Grid.Row="6" Grid.Column="2" FontWeight="Bold" >3</Button>
+        <Button x:Name="Minus"
+                Grid.Row="6" Grid.Column="3">-</Button>
+
+        <!-- ROW 7 -->
+        <Button x:Name="Dot"
+                Grid.Row="7" Grid.Column="0">,</Button>
+        <Button x:Name="Zero"
+                Grid.Row="7" Grid.Column="1" FontWeight="Bold" >0</Button>
+        <Button x:Name="Equals"
+                Grid.Row="7" Grid.Column="2">=</Button>
+        <Button x:Name="Plus"
+                Grid.Row="7" Grid.Column="3">+</Button>
+
+    </Grid>
+</Window>
