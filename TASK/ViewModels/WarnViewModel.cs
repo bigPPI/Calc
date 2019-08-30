@@ -1,13 +1,4 @@
 ﻿using Caliburn.Micro;
-using log4net.Appender;
-using log4net.Core;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TASK.Logging;
 
 namespace TASK.ViewModels

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TASK.Views"
         mc:Ignorable="d"
         Title="Warning"
-        Background="WhiteSmoke" Height="246.936" Width="470.335"
+        Background="WhiteSmoke" Height="249.443" Width="546.797"
         FontSize="16" FontWeight="Bold">
     <Grid>
         <!-- Rows/Columns defenitions -->

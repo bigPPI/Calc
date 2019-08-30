@@ -4,8 +4,6 @@ using Castle.Windsor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using TASK.Logging;
 using TASK.Models;
@@ -38,7 +36,8 @@ namespace TASK
 			_container.Register(Component.For<IWindowManager>().ImplementedBy<WindowManager>().LifestyleSingleton());
 			_container.Register(Component.For<IEventAggregator>().ImplementedBy<EventAggregator>().LifestyleSingleton());
 
-			_container.Register(Component.For<ICalculations>().ImplementedBy<Calculations>().LifestyleTransient());
+			_container.Register(Component.For<ICalculations>().ImplementedBy<Calculations>().LifestyleTransient()); 
+			_container.Register(Component.For<IRPNCalculation>().ImplementedBy<RPNCalculation>().LifestyleTransient());
 
 			//Register all ViewModels
 			GetType().Assembly.GetTypes()

@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TASK.Logging;
 
 namespace TASK.Models
 {
 	public class Calculations : ICalculations
 	{
-		private static readonly log4net.ILog _log = LogHelper.GetLogger();
-
 		/// <summary>
 		/// Calculates a result of binary operation. Precision: 5 decimal places
 		/// </summary>
@@ -29,11 +26,9 @@ namespace TASK.Models
 				}
 
 				result = _binaryFunctions[function].Invoke(Convert.ToDouble(a), Convert.ToDouble(b));
-				_log.Info(string.Format("New calculation: {0} {1} {2} = {3}", a, function, b, result));
 			}
 			catch (Exception e)
 			{
-				_log.Error(e.Message, e);
 				throw new ArgumentException(e.Message);
 			}
 
@@ -63,11 +58,9 @@ namespace TASK.Models
 				}
 
 				result = _unaryFunctions[function].Invoke(Convert.ToDouble(a));
-				_log.Info(string.Format("New calculation of unary operator: {0}{1} = {2}", a, function, result));
 			}
 			catch (Exception e)
 			{
-				_log.Error(e.Message, e);
 				throw new ArgumentException(e.Message);
 			}
 
